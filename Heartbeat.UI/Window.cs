@@ -37,11 +37,12 @@ namespace Heartbeat.UI
 			Button button = new Button(manager)
 			{
 				Name = "Закрыть",
-				Rectangle = new RectangleF(rectangle.Right - 25, 0, 25, 25)
+				Rectangle = new RectangleF(ClientRect.Right - 25, 0, 25, 25),
+				Text = "x"
 			};
 			button.Click += CloseButton_Click;
 
-			Childs.Add(button);
+			AddChild(button);
 			Visible = true;
 		}
 
@@ -53,7 +54,12 @@ namespace Heartbeat.UI
 
 		internal override void Render(Renderer renderer)
 		{
-			renderer.DrawRectangle(rectangle, BackColor);
+			var rect = rectangle;
+			if (Parent != null)
+				rect.Offset(Parent.ClientRect.TopLeft);
+			renderer.DrawRectangle(rect, Color.Black);
+			rect.
+			renderer.DrawRectangle(ClientRect, BackColor);
 		}
 	}
 }

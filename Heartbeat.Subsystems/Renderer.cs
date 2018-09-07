@@ -59,5 +59,14 @@ namespace Heartbeat.Subsystems
 			device.VertexFormat = Vertex.Format;
 			device.DrawUserPrimitives(PrimitiveType.TriangleFan, 2, vertices);
 		}
+
+		public void DrawString(RectangleF rectangle, string text, Color color)
+		{
+			using (var font = new Font(device, 24, 0, FontWeight.Normal, 0, false, FontCharacterSet.Russian, FontPrecision.TrueType, FontQuality.ClearType, FontPitchAndFamily.Roman, "Consolas"))
+			{
+				font.DrawText(null, text, rectangle, FontDrawFlags.Center | FontDrawFlags.VerticalCenter, color);
+			}
+		}
+
 	}
 }

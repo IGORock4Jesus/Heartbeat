@@ -10,8 +10,7 @@ namespace Heartbeat.UI
 {
 	public class Button : Control
 	{
-		public RectangleF Rectangle { get; set; } = new RectangleF(0, 0, 100, 30);
-
+		public string Text { get; set; }
 
 		public Button(Manager manager) : base(manager)
 		{
@@ -22,7 +21,7 @@ namespace Heartbeat.UI
 
 		private void MainForm_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-			if (Rectangle.Contains(e.X, e.Y))
+			if (new RectangleF(AbsoluteRect.X, AbsoluteRect.Y, .Contains(e.X, e.Y))
 			{
 				Click?.Invoke(this);
 			}
@@ -33,6 +32,7 @@ namespace Heartbeat.UI
 		internal override void Render(Renderer renderer)
 		{
 			renderer.DrawRectangle(Rectangle, Color.Red);
+			renderer.DrawString(Rectangle, Text, Color.White);
 		}
 	}
 }
